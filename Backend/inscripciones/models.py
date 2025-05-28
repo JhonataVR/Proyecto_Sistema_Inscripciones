@@ -31,7 +31,7 @@ class Usuario(AbstractUser):
     telefono = models.CharField(max_length=20, blank=True)
     direccion = models.CharField(max_length=255, blank=True)
 
-    objects = UsuarioManager()  # Usa el manager personalizado
+    objects = UsuarioManager()  # type: ignore
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

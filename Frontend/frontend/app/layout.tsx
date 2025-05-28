@@ -1,12 +1,22 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import React from "react";
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import { Metadata } from "next";
+import TitleEffect from "@/components/TitleEffect";
+export const metadata: Metadata = {
+title: 'Inscripciones Ingeniería de Sistemas',
+description: 'The official Next.js Course Dashboard, built with App Router.',
+};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
-        
+          <TitleEffect />
           {children}
         </ThemeProvider>
       </body>

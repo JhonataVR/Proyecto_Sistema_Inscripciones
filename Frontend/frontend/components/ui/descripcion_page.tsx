@@ -30,7 +30,7 @@ const TitlePage: React.FC<TitlePageProps> = ({
   }, [text]);
 
   return (
-    <div className="z-10 m-4 sm:mt-8 md:m-12 lg:m-10 px-2 sm:px-4 ">
+    <div className="z-10 m-4 sm:mt-8 md:m-12 lg:m-10 px-2 sm:px-4 select-none">
       <h1
         className={`${size} relative z-50 font-bold font-rubik text-zinc-950 dark:text-gray-400`}
       >

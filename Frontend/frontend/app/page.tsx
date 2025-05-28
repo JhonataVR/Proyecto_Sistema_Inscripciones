@@ -23,6 +23,7 @@ export default function Page() {
   // URL de la imagen de perfil
   // Global loader
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000); // 1 segundo
     return () => clearTimeout(timer);
@@ -35,7 +36,7 @@ export default function Page() {
         setShowRobotModal(false);
         setRobotClosing(false); // Reinicia para la próxima vez
       }, 600); // 600ms = duración animación
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, [showRobotModal]);
 
@@ -56,7 +57,7 @@ export default function Page() {
         transition-all duration-700
         ${
           robotClosing
-            ? "scale-50 translate-x-[38vw] -translate-y-[38vh] opacity-0"
+            ? "scale-10 translate-x-[47vw] -translate-y-[45vh] "
             : "scale-100"
         }
       `}
@@ -131,7 +132,7 @@ export default function Page() {
             </button>
 
             {/* Configuration */}
-            <button className="dark:text-slate-100 dark:hover:text-black dark:hover:bg-indigo-600 hover:bg-indigo-950 relative group h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer text-gray-950 hover:text-white  hover:duration-300 hover:ease-linear">
+            <button className="dark:text-slate-100 dark:hover:text-black dark:hover:bg-indigo-600 hover:bg-indigo-950 text-gray-950 hover:text-white relative group h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer  hover:duration-300 hover:ease-linear">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -250,11 +251,10 @@ export default function Page() {
               </div>
             )}
             {/* Main */}
-            <main className="flex-1 bg-transparent max-w-full w-full flex flex-col relative">
+            <main className="snap-y snap-mandatory flex-1 bg-transparent max-w-full w-full flex flex-col relative">
               {/* Background Animation */}
               {/* Container */}
               <BgAnimate></BgAnimate>
-
               <div
                 className="z-10 mt-16 ml-16   lg:mt-16 relative "
                 style={{ minHeight: "calc(100vh - 4rem)" }} // 4rem es la altura del header
@@ -425,11 +425,11 @@ export default function Page() {
               </div>
               <section
                 id="bajar"
-                className="relative flex z-1 px-4 ml-16 p-5 scroll-mt-16 border-2 border-zinc-900 dark:border-amber-50 flex-col"
+                className="relative snap-start snap-always flex z-1 px-4 ml-16 p-5 scroll-mt-16 border-2 border-zinc-900 dark:border-amber-50 flex-col "
                 style={{ minHeight: "calc(100vh - 4rem)" }}
               >
-                <div>
-                  <h2 className="flex justify-center lg:text-4xl mt-3 mb-10">
+                <div className="snap-center">
+                  <h2 className="flex justify-center lg:text-4xl mt-3 mb-10 font-bold font-rubik dark:text-shadow-lg/20 dark:text-shadow-blue-400 text-shadow-lg/30 text-shadow-black text-zinc-950 dark:text-blue-50">
                     GESTION DE ESTUDIANTES Y DOCENTES
                   </h2>
 
@@ -455,7 +455,7 @@ export default function Page() {
                     </svg>
                   </button>
                 </div>
-                <div className="mt-2 pt-15 w-full h-full mx-auto rounded-xl border-2 border-zinc-900 dark:border-amber-50">
+                <div className="mt-2 pt-15 w-full h-full mx-auto rounded-xl border-2 border-zinc-900 dark:border-amber-50 bg-gradient-to-b from-blue-200 via-white to-blue-400 dark:from-blue-950 dark:via-black dark:to-blue-900 ">
                   <DashboardAll />
                 </div>
               </section>
@@ -484,15 +484,12 @@ export default function Page() {
           </div>
           {/* Modal para LoginPage */}
           {showLogin && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-              <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 relative">
-                <button
-                  onClick={() => setShowLogin(false)}
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                >
-                  ✕
-                </button>
-                <LoginPage />
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+              {/* El modal NO tiene color de fondo, solo padding y sombra */}
+              <div className="relative p-0 rounded-lg shadow-2xl">
+                {/* Botón de cierre eliminado, se pondrá en el componente */}
+
+                <LoginPage onClose={() => setShowLogin(false)} />
               </div>
             </div>
           )}
